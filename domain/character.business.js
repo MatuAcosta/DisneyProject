@@ -4,6 +4,10 @@ class CharacterBusiness extends BaseBusiness{
     constructor({CharacterRepository}){
         super(CharacterRepository,Character)
     }
+
+    async getMoviesCharacter(){
+        return await this.CharacterRepository.getMoviesCharacter(id);
+    }
 }
 
 module.exports = CharacterBusiness

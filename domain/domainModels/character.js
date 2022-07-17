@@ -1,4 +1,3 @@
-const { Blob } = require("buffer");
 
 class Character{
     constructor(){
@@ -7,7 +6,7 @@ class Character{
         this.age = 0
         this.weight = 0
         this.history = ""
-        this.mov_serie = []
+        this.actsIn= []
         this.image = ""
     }
 }

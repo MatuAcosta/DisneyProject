@@ -5,15 +5,21 @@ const Server = require('./server');
 const Routes = require('./routes')
 const db = require('../dal/models/index');
 
-
+//character
 const {CharacterController} = require('./controllers')
 const CharacterRoutes = require('./routes/character.routes');
 const { CharacterService } = require('../services');
 const {CharacterBusiness} = require('../domain');
 const {CharacterRepository} = require('../dal/repositories')
+
+//movie
+const {MovieController} = require('./controllers');
+const MovieRoutes = require('./routes/movie.routes');
+const {MovieService} = require('../services')
+const {MovieBusiness}= require('../domain')
+const {MovieRepository} = require('../dal/repositories')
+
 const container = createContainer();
-
-
 
 
 container.register({
@@ -23,19 +29,26 @@ container.register({
     db:asValue(db)
 })
 .register({
-    CharacterRoutes:asFunction(CharacterRoutes).singleton()
+    CharacterRoutes:asFunction(CharacterRoutes).singleton(),
+    MovieRoutes: asFunction(MovieRoutes).singleton()
+
 })
 .register({
-    CharacterController: asClass(CharacterController).singleton()
+    CharacterController: asClass(CharacterController).singleton(),
+    MovieController: asClass(MovieController).singleton()
 })
 
 .register({
-    CharacterService:asClass(CharacterService).singleton()
+    CharacterService:asClass(CharacterService).singleton(),
+    MovieService: asClass(MovieService).singleton()
 })
 .register({
-    CharacterBusiness:asClass(CharacterBusiness).singleton()
+    CharacterBusiness:asClass(CharacterBusiness).singleton(),
+    MovieBusiness:asClass(MovieBusiness).singleton()
 })
 .register({
-    CharacterRepository: asClass(CharacterRepository).singleton()
+    CharacterRepository: asClass(CharacterRepository).singleton(),
+    MovieRepository: asClass(MovieRepository).singleton()
+
 })
 module.exports = container;

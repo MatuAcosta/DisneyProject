@@ -4,7 +4,10 @@ class CharacterService extends BaseService{
     constructor({CharacterBusiness}){
         super(CharacterBusiness);
     }
-
+    
+    async getMoviesCharacter(id){
+        return this.CharacterBusiness.getMoviesCharacter(id) 
+    }
 
 }
 

@@ -57,7 +57,7 @@ class CharacterController {
     }
     async update(req,res){
         try {
-            const { body} = req; 
+            const {body} = req; 
             const {id} = req.params;    
             const updated = await this.characterService.update(id,body); 
             if (!updated) throw new Error()
@@ -68,6 +68,17 @@ class CharacterController {
 
     }
 
+    async getMoviesCharacter(req,res){
+        try {
+            const {id} = req.params;
+            let movies = await this.characterService.getMoviesCharacter(id);
+            if(!movies) throw new Error();
+            //movies = movies.map(mv =>  mapper(MovieDto,mv))
+            return res.status(204).send(movies);
+        } catch (error) {
+            res.status(404).send('No existe el actor')
+        }
+    }
 
 }
 
