@@ -20,10 +20,21 @@ module.exports = {
       image:{
         type: Sequelize.STRING,
         allowNull:false
-      }
+      },
+      genreId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'genres', // name of Source model
+          key: 'id',
+        },
+      },
     });
   },
   async down(queryInterface, Sequelize) {
+    //await queryInterface.removeConstraint('acts_in', 'acts_in_ibfk_1')
     await queryInterface.dropTable('Movies');
   }
 };
+
+/* 20220717200433-create-movie.js */

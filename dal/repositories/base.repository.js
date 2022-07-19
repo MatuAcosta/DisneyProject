@@ -3,23 +3,27 @@ class BaseRepository {
         this.db = db;
         this.entity = entity;
     }
-    getAll(){
-        return  this.db[this.entity].findAll();
+    async getAll(){
+        return await  this.db[this.entity].findAll();
     }
 
-    getOne(id){
-        return this.db[this.entity].findOne({where:{id}});
+    async getOne(id){
+        return await this.db[this.entity].findOne({where:{id}});
     }
 
-    create(entity){
-        return  this.db[this.entity].create(entity)
+    async create(entity){
+        return  await this.db[this.entity].create(entity)
     }
 
-    update(id,entity){
-        return this.db[this.entity].update(entity,{where:{id}});
+    async update(id,entity){
+        let res = await this.db[this.entity].update(entity,{where:{id}});
+        if(res !== 0) {
+            return entity;
+        }
+        return null 
     }
-    delete(id){
-        return this.db[this.entity].destroy({where:{id}});
+    async delete(id){
+        return await this.db[this.entity].destroy({where:{id}});
     }
 }
 

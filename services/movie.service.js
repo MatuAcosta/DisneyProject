@@ -5,24 +5,24 @@ class MovieService extends BaseService {
         super(MovieBusiness)
     }
 
-    async checkScore(score){
-        if(score > 5) {
+    checkScore(score){
+        if(score > 5 || score < 1) {
             return false
         }
         return true
     }
 
-/*     async create(movie) {
+     async create(movie) {
         if(!this.checkScore(movie.score)){
-            return new Error();
+            return new Error('Score cannot be higher than five and lower than 1');
         }
-        super.create(movie)
-    } */
+        return await super.create(movie)
+    } 
     async update(id,movie) {
         if(!this.checkScore(movie.score)){
-            return new Error();
+            return new Error('Score cannot be higher than five and lower than 1');
         }
-        return super.update(id,movie)
+        return await super.update(id,movie)
     }
 
 }

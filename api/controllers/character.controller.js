@@ -35,7 +35,7 @@ class CharacterController {
             const created = await this.characterService.create(body);
             if(!created) throw new Error()
             const show = mapper(CharacterDto,created);
-            return res.status(201).send(show)
+            return res.status(200).send(show)
         } catch (error) {
             res.status(401).send('Character not found')
 
@@ -58,9 +58,10 @@ class CharacterController {
         try {
             const {body} = req; 
             const {id} = req.params;    
-            const updated = await this.characterService.update(id,body); 
+            let updated = await this.characterService.update(id,body); 
             if (!updated) throw new Error()
-            return res.status(204).send(updated);
+            updated = mapper(CharacterDto,updated)
+            return res.status(200).send(updated);
         } catch (error) {
             res.status(404).send('Character not found')
         }

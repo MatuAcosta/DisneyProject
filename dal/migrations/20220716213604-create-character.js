@@ -27,6 +27,7 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
+    //await queryInterface.removeConstraint('acts_in', 'acts_in_ibfk_2')
     await queryInterface.dropTable('Characters');
   }
 };

@@ -33,11 +33,12 @@ class MovieController {
         try {
             const {body} = req;
             const created = await this.movieService.create(body);
-            if(!created) throw new Error()
+            if(created instanceof Error) throw {message:"El score debe ser entre 1 y 5"};
+            if (!created) throw {message:"No se pudo crear la pelicula"}
             const show = mapper(MovieDto,created);
             return res.status(201).send(show)
         } catch (error) {
-            res.status(401).send('Movie not found')
+            res.status(401).send(error.message)
 
         }
 
@@ -46,10 +47,11 @@ class MovieController {
         try {
             const {id} = req.params;
             const deleted = await this.movieService.delete(id);
-            console.log(typeof deleted)
+            console.log(deleted)
             if(!deleted) throw new Error()
-            return res.send(deleted)
+            return res.status(200).send("Movie deleted")
         } catch (error) {
+            console.log(error)
             res.status(404).send('Movie not found')
 
         }
@@ -59,11 +61,13 @@ class MovieController {
         try {
             const {body} = req; 
             const {id} = req.params;    
-            const updated = await this.movieService.update(id,body); 
-            if (!updated) throw new Error()
-            return res.status(204).send(updated);
+            let updated = await this.movieService.update(id,body); 
+            if(updated instanceof Error) throw {message:"El score debe ser entre 1 y 5"};
+            if (!updated) throw {message:"No se pudo crear la pelicula"}  
+            updated = mapper(MovieDto,updated)
+            return res.status(200).send(updated);
         } catch (error) {
-            res.status(404).send('Movie not found')
+            res.status(404).send(error.message)
         }
 
     }
