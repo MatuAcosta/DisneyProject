@@ -1,7 +1,10 @@
+
 class MovieDto{
     constructor(){
         this.image = "";
         this.title = "";
-        this.creationDate = new Date();
+        this.creation_date = new Date().toDateString();
     }
 }
+
+module.exports = MovieDto

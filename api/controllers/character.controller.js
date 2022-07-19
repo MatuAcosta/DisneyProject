@@ -46,7 +46,6 @@ class CharacterController {
         try {
             const {id} = req.params;
             const deleted = await this.characterService.delete(id);
-            console.log(typeof deleted)
             if(!deleted) throw new Error()
             return res.send(deleted)
         } catch (error) {

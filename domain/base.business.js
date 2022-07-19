@@ -17,7 +17,6 @@ class BaseBusiness {
 
     async create(entity){
         entity = mapper(this.entityToMap,entity);
-        console.log(entity);
         const createdEntity = await this.entityRepository.create(entity);
         return mapper(this.entityToMap,createdEntity);
     }

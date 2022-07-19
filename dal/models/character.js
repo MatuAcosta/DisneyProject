@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     history: DataTypes.STRING,
     image:DataTypes.STRING
   }, {
+    timestamps:false,
     sequelize,
     modelName: 'Character',
   });

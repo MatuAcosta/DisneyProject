@@ -12,10 +12,16 @@ class BaseService {
         return entity;
     }
     async create(entity){
-        const createdEntity = await this.entityBusiness.create(entity);
-        return createdEntity;
+       try {
+            const createdEntity = await this.entityBusiness.create(entity);
+            return createdEntity;
+       } catch (error) {
+            console.log(error)
+       }
+
     }
     async update(id,entity){
+        console.log(entity)
         const updatedEntity = await this.entityBusiness.update(id,entity);
         return updatedEntity;
     }

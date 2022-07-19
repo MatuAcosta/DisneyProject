@@ -1,3 +1,4 @@
 module.exports = {
-    Character:require('./character')
+    Character:require('./character'),
+    Movie:require('./movie')
 }

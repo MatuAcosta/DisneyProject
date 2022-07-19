@@ -19,8 +19,8 @@ module.exports = {
             model: 'characters', // name of Source model
             key: 'id',
           },
-      },
-    },{timestamps:false});
+      }
+    });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('ActsIns');

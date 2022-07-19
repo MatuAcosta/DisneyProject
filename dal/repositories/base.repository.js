@@ -16,7 +16,6 @@ class BaseRepository {
     }
 
     update(id,entity){
-        console.log(entity)
         return this.db[this.entity].update(entity,{where:{id}});
     }
     delete(id){

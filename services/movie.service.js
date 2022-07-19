@@ -12,17 +12,17 @@ class MovieService extends BaseService {
         return true
     }
 
-    async create(movie) {
+/*     async create(movie) {
         if(!this.checkScore(movie.score)){
             return new Error();
         }
         super.create(movie)
-    }
-    async update(movie) {
+    } */
+    async update(id,movie) {
         if(!this.checkScore(movie.score)){
             return new Error();
         }
-        super.update(movie)
+        return super.update(id,movie)
     }
 
 }

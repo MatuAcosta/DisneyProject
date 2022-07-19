@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     movieId: DataTypes.INTEGER,
     characterId: DataTypes.INTEGER
   }, {
+    timestamps:false,
     sequelize,
     modelName: 'ActsIn',
   });

@@ -21,7 +21,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull:false
       }
-    },{timestamps:false});
+    });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Movies');

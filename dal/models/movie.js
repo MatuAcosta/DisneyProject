@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     score: DataTypes.INTEGER,
     image: DataTypes.STRING
   }, {
+    timestamps:false,
     sequelize,
     modelName: 'Movie',
   });
