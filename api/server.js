@@ -1,4 +1,5 @@
 const express = require('express');
+const bp = require('body-parser')
 require('dotenv').config();
 class Server { 
     constructor({router}){
@@ -7,6 +8,10 @@ class Server {
     }
 
     start(){
+      this.express.use(bp.json());
+        this.express.use(bp.urlencoded({
+            extended:true
+        })); 
         return new Promise((resolve,reject) => {
             const http = this.express.listen(process.env.PORT,()=>{
                 const {port} = http.address();

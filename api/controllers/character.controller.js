@@ -31,12 +31,15 @@ class CharacterController {
     }
     async create(req,res){
         try {
-            const {body} = req;
-            const created = await this.characterService.create(body);
+            const path = req.file.path.replace(/\\/g, '/');
+            let character = req.body; 
+            character.image = path;
+            const created = await this.characterService.create(character);
             if(!created) throw new Error()
             const show = mapper(CharacterDto,created);
             return res.status(200).send(show)
         } catch (error) {
+            console.log(error)
             res.status(401).send('Character not found')
 
         }
@@ -56,9 +59,12 @@ class CharacterController {
     }
     async update(req,res){
         try {
-            const {body} = req; 
+            const body = req.body; 
             const {id} = req.params;    
-            let updated = await this.characterService.update(id,body); 
+            const path = req.file.path.replace(/\\/g, '/');
+            let character = req.body; 
+            character.image = path;
+            let updated = await this.characterService.update(id,character); 
             if (!updated) throw new Error()
             updated = mapper(CharacterDto,updated)
             return res.status(200).send(updated);
@@ -68,17 +74,6 @@ class CharacterController {
 
     }
 
-    async getMoviesCharacter(req,res){
-        try {
-            const {id} = req.params;
-            let movies = await this.characterService.getMoviesCharacter(id);
-            if(!movies) throw new Error();
-            //movies = movies.map(mv =>  mapper(MovieDto,mv))
-            return res.status(204).send(movies);
-        } catch (error) {
-            res.status(404).send('No existe el actor')
-        }
-    }
 
 }
 

@@ -31,8 +31,10 @@ class MovieController {
     }
     async create(req,res){
         try {
-            const {body} = req;
-            const created = await this.movieService.create(body);
+            const path = req.file.path.replace(/\\/g, '/');
+            let movie = req.body; 
+            movie.image = path;
+            const created = await this.movieService.create(movie);
             if(created instanceof Error) throw {message:"El score debe ser entre 1 y 5"};
             if (!created) throw {message:"No se pudo crear la pelicula"}
             const show = mapper(MovieDto,created);
@@ -59,9 +61,11 @@ class MovieController {
     }
     async update(req,res){
         try {
-            const {body} = req; 
-            const {id} = req.params;    
-            let updated = await this.movieService.update(id,body); 
+            const {id} = req.params;
+            const path = req.file.path.replace(/\\/g, '/');
+            let movie = req.body; 
+            movie.image = path;   
+            let updated = await this.movieService.update(id,movie); 
             if(updated instanceof Error) throw {message:"El score debe ser entre 1 y 5"};
             if (!updated) throw {message:"No se pudo crear la pelicula"}  
             updated = mapper(MovieDto,updated)

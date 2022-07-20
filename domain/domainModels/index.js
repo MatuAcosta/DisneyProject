@@ -1,4 +1,5 @@
 module.exports = {
     Character:require('./character'),
-    Movie:require('./movie')
+    Movie:require('./movie'),
+    Genre: require('./genre')
 }

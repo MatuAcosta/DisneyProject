@@ -1,8 +1,10 @@
 const BaseService = require("./base.service");
 
 class MovieService extends BaseService {
-    constructor({MovieBusiness}){
+    constructor({MovieBusiness,GenreService}){
         super(MovieBusiness)
+        this.genreService = GenreService
+
     }
 
     checkScore(score){
@@ -12,16 +14,23 @@ class MovieService extends BaseService {
         return true
     }
 
+
+    //we catch genreId by receiving his name, if the genre doesnt exist we save null.
+    //this is valid for create and update.
      async create(movie) {
         if(!this.checkScore(movie.score)){
             return new Error('Score cannot be higher than five and lower than 1');
         }
+        let genreId = await this.genreService.findByName(movie.genre);
+        movie.genreId = genreId
         return await super.create(movie)
     } 
     async update(id,movie) {
         if(!this.checkScore(movie.score)){
             return new Error('Score cannot be higher than five and lower than 1');
         }
+        let genreId = await this.genreService.findByName(movie.genre);
+        movie.genreId = genreId
         return await super.update(id,movie)
     }
 
