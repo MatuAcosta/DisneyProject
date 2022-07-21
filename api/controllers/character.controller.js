@@ -9,13 +9,17 @@ class CharacterController {
     async getAll(req,res){
         try {
             let characters = null; 
+            console.log(req.query)
             //ccheck query params
-            //we create a generic getByName because movies and characters will use this request.
-            if(req.query.name) characters = await this.characterService.getByName(req.query.name);
-            if(req.query.age) characters = await this.characterService.getCharactersByAge(req.query.age);
-            if(req.query.movies) characters = await this.characterService.getCharactersByMovie(req.query.movies);
-            if(!characters) characters = await this.characterService.getAll();
-            
+            //we create a generic getByName because movies and characters will use this request.        
+            const queryKeys = Object.keys(req.query).length;
+            if(queryKeys > 0){
+                if(req.query.name) characters = await this.characterService.getByName(req.query.name);
+                if(req.query.age) characters = await this.characterService.getCharactersByAge(req.query.age);
+                if(req.query.movies) characters = await this.characterService.getCharactersByMovie(req.query.movies);
+            }else{
+                characters = await this.characterService.getAll();
+            }
             if(characters instanceof Error) throw {msg:'Movie not found'}
             if(!characters) throw {msg:'Characteres not found'}
             characters = characters.map(ch => mapper(CharacterDto,ch))

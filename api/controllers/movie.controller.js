@@ -10,18 +10,20 @@ class MovieController {
         try {
             let movies = null;
             //check query params
-            if(req.query.name) movies = await this.movieService.getByName(req.query.name);
-            if(req.query.genre) movies = await this.movieService.getByGenre(req.query.genre);
-            if(req.query.order) movies = await this.movieService.getOrderedByCreationDate(req.query.order);
-            if(!movies) movies = await this.movieService.getAll();
-            
-            
-            if(!movies) throw new Error();
+            const queryKeys = Object.keys(req.query).length;
+            if(queryKeys > 0){
+                if(req.query.name) movies = await this.movieService.getByName(req.query.name);
+                if(req.query.genre) movies = await this.movieService.getByGenre(req.query.genre);
+                if(req.query.order) movies = await this.movieService.getOrderedByCreationDate(req.query.order);
+            }else{
+                movies = await this.movieService.getAll();
+            }            
+            if(!movies) throw {msg:'movies not found'};
             movies = movies.map(mv => mapper(MovieDto,mv))
             return res.send(movies);
         } catch (error) {
             console.log(error)
-            res.send('movies not found');
+            res.status(404).send(error.msg);
         }
 
 
