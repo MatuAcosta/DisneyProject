@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Acts_in', {
+    await queryInterface.createTable('acts_in', {
       movieId: {
         allowNull: false,
         primaryKey: true,

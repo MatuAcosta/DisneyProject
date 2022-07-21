@@ -27,6 +27,9 @@ class BaseService {
     async delete(id){
         return await this.entityBusiness.delete(id);
     }
+    async getByName(name){
+        return await this.entityBusiness.getByName(name);
+    }
 }
 
 module.exports = BaseService

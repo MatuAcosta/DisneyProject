@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 class BaseRepository { 
     constructor(db,entity){
         this.db = db;
@@ -24,6 +25,16 @@ class BaseRepository {
     }
     async delete(id){
         return await this.db[this.entity].destroy({where:{id}});
+    }
+    //we create a generic getByName because movies and characters will use this request.
+    async getByName(name){
+        return await this.db[this.entity].findAll(
+            {
+                where:{
+                   name: {[Op.substring]:`${name}`}
+                }
+            }
+        )
     }
 }
 

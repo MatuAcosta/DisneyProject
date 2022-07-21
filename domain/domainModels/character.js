@@ -6,7 +6,6 @@ class Character{
         this.age = 0
         this.weight = 0
         this.history = ""
-        this.actsIn= []
         this.image = ""
     }
 }

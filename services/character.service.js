@@ -4,6 +4,7 @@ const { DATE } = require("sequelize");
 class CharacterService extends BaseService{
     constructor({CharacterBusiness}){
         super(CharacterBusiness);
+        this.characterBusiness = CharacterBusiness
     }
     
     calculateAge(birthdate){
@@ -29,6 +30,14 @@ class CharacterService extends BaseService{
         console.log('character age service', character.age)
         return await super.update(id,character)
     }
+
+    async getCharactersByAge(age){
+        return await this.characterBusiness.getCharactersByAge(age)
+    }
+    async getCharactersByMovie(idMovie){
+        return await this.characterBusiness.getCharactersByMovie(idMovie);
+    }
+
 
 
 

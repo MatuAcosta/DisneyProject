@@ -8,12 +8,21 @@ class CharacterController {
 
     async getAll(req,res){
         try {
-            let characters = await this.characterService.getAll();
-            if(!characters) throw new Error();
+            let characters = null; 
+            //checking if there is a query in the url.
+            //we create a generic getByName because movies and characters will use this request.
+            if(req.query.name) characters = await this.characterService.getByName(req.query.name);
+            if(req.query.age) characters = await this.characterService.getCharactersByAge(req.query.age);
+            if(req.query.movies) characters = await this.characterService.getCharactersByMovie(req.query.movies);
+            if(!characters) characters = await this.characterService.getAll();
+            console.log(characters)
+            if(characters instanceof Error) throw {msg:'Movie not found'}
+            if(!characters) throw {msg:'Characteres not found'}
             characters = characters.map(ch => mapper(CharacterDto,ch))
             return res.send(characters);
         } catch (error) {
-            res.send('Characters not found');
+            console.log(error)
+            res.status(404).send(error.msg);
         }
 
 
@@ -23,7 +32,7 @@ class CharacterController {
             let id = req.params.id;
             let character = await this.characterService.getOne(id)
             if(!character) throw new Error();
-            character = mapper(CharacterDto,character);
+            //character = mapper(CharacterDto,character);
             return res.send(character);
         } catch (error) {
             res.status(404).send('Character not found')
@@ -73,6 +82,8 @@ class CharacterController {
         }
 
     }
+
+
 
 
 }

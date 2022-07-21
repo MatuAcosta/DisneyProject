@@ -31,6 +31,10 @@ class BaseBusiness {
     async delete(id){
         return await this.entityRepository.delete(id);
     }
+
+   async getByName(name) { 
+        return await this.entityRepository.getByName(name);
+    }
     
 }
 module.exports = BaseBusiness
