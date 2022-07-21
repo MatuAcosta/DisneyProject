@@ -3,8 +3,8 @@ const BaseService = require("./base.service");
 class MovieService extends BaseService {
     constructor({MovieBusiness,GenreService}){
         super(MovieBusiness)
+        this.movieBusiness = MovieBusiness
         this.genreService = GenreService
-
     }
 
     checkScore(score){
@@ -32,6 +32,12 @@ class MovieService extends BaseService {
         let genreId = await this.genreService.findByName(movie.genre);
         movie.genreId = genreId
         return await super.update(id,movie)
+    }
+    async getByGenre (genreId){
+        return await this.movieBusiness.getByGenre(genreId);
+    }
+    async getOrderedByCreationDate(order){
+        return await this.movieBusiness.getOrderedByCreationDate(order);
     }
 
 }

@@ -28,13 +28,21 @@ class BaseRepository {
     }
     //we create a generic getByName because movies and characters will use this request.
     async getByName(name){
-        return await this.db[this.entity].findAll(
-            {
-                where:{
-                   name: {[Op.substring]:`${name}`}
+        if(this.entity === 'Character'){
+            return await this.db[this.entity].findAll(
+                {
+                    where:{
+                       name: {[Op.substring]:`${name}`}
+                    }
                 }
+            )
+        }
+        return await this.db[this.entity].findAll({
+            where:{
+                title:{[Op.eq]:`${name}`}
             }
-        )
+        })
+
     }
 }
 
