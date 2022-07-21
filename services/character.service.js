@@ -2,9 +2,10 @@ const BaseService = require("./base.service");
 const {Blob} = require('buffer');
 const { DATE } = require("sequelize");
 class CharacterService extends BaseService{
-    constructor({CharacterBusiness}){
+    constructor({CharacterBusiness,MovieService}){
         super(CharacterBusiness);
         this.characterBusiness = CharacterBusiness
+        this.movieService = MovieService
     }
     
     calculateAge(birthdate){
@@ -15,6 +16,19 @@ class CharacterService extends BaseService{
             age-- ;
         }
         return age;
+    }
+
+    //override getOne to get movies related to the character
+    async getOne(id){
+        try {
+            let movies = await this.movieService.getByCharacter(id);
+            let character = await super.getOne(id);
+            character.actsIn = movies;
+            return character;  
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
     async create(character){

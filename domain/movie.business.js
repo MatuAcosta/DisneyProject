@@ -11,6 +11,9 @@ class MovieBusiness extends BaseService{
     async getOrderedByCreationDate(order){
         return await this.movieRepository.getOrderedByCreationDate(order);
     }
+    async getByCharacter(idCharacter){
+        return await this.movieRepository.getByCharacter(idCharacter);
+    }
 }
 
 module.exports = MovieBusiness

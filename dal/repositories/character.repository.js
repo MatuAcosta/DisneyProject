@@ -24,11 +24,11 @@ class CharacterRepository extends BaseRepository{
             if(!charactersId) throw new Error()
             return Promise.all(
                 charactersId.map(async (ch) => {
-                    let id =  await ch.dataValues.characterId
+                    let id =   ch.dataValues.characterId
                     return await super.getOne(id)
                 }))
         } catch (error) {
-            console.log(error)
+            return error
         }
   
 

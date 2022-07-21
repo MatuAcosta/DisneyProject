@@ -19,6 +19,28 @@ class MovieRepository extends BaseRepository{
             ]
         })
     }
+    async getByCharacter(idCharacter){
+        try {
+            idCharacter = parseInt(idCharacter);
+            let moviesId = await this.db['ActsIn'].findAll({
+                attributes:['movieId'],
+                where:{
+                    characterId:idCharacter
+                }
+            })
+            if(moviesId.length === 0) return new Error ()
+            if(!moviesId) return new Error();
+            return Promise.all(
+                moviesId.map(async mv =>{
+                    let id =  mv.dataValues.movieId;
+                    return await super.getOne(id)
+                })
+            )
+        } catch (error) {
+            
+        }
+    }
+
 }
 
 module.exports = MovieRepository;

@@ -7,6 +7,7 @@ class Character{
         this.weight = 0
         this.history = ""
         this.image = ""
+        this.actsIn = []
     }
 }
 

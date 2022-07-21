@@ -15,7 +15,7 @@ class MovieService extends BaseService {
     }
 
 
-    //we catch genreId by receiving his name, if the genre doesnt exist we save null.
+    //we catch genreId through gender's name, if the genre doesnt exist we save null.
     //this is valid for create and update.
      async create(movie) {
         if(!this.checkScore(movie.score)){
@@ -40,6 +40,10 @@ class MovieService extends BaseService {
         return await this.movieBusiness.getOrderedByCreationDate(order);
     }
 
+    //getByCharacters allow us to list the movies which a characters acts in
+    async getByCharacter(idCharacter){
+        return await this.movieBusiness.getByCharacter(idCharacter);
+    }
 }
 
 module.exports = MovieService
