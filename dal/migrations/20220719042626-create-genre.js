@@ -19,3 +19,5 @@ module.exports = {
     await queryInterface.dropTable('genres');
   }
 };
+
+/* 20220719042626-create-genre.js */

@@ -24,10 +24,6 @@ module.exports = {
       genreId: {
         allowNull: true,
         type: Sequelize.INTEGER,
-        references: {
-          model: 'genres', // name of Source model
-          key: 'id',
-        },
       },
     });
   },
