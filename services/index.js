@@ -1,6 +1,6 @@
 module.exports = {
     CharacterService: require('./character.service.js'),
     MovieService: require('./movie.service'),
-    GenreService: require('./genre.service')
-
+    GenreService: require('./genre.service'),
+    UserService: require('./user.service')
 }

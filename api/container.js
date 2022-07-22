@@ -27,6 +27,12 @@ const {GenreService} = require('../services')
 const {GenreBusiness}= require('../domain')
 const {GenreRepository} = require('../dal/repositories')
 
+//user
+//const {GenreController} = require('./controllers');
+//const GenreRoutes = require('./routes/genre.route');
+const {UserService} = require('../services')
+const {UserBusiness}= require('../domain')
+const {UserRepository} = require('../dal/repositories')
 
 const container = createContainer();
 
@@ -51,16 +57,19 @@ container.register({
 .register({
     CharacterService:asClass(CharacterService).singleton(),
     MovieService: asClass(MovieService).singleton(),
-    GenreService: asClass(GenreService).singleton()
+    GenreService: asClass(GenreService).singleton(),
+    UserService:asClass(UserService).singleton()
 })
 .register({
     CharacterBusiness:asClass(CharacterBusiness).singleton(),
     MovieBusiness:asClass(MovieBusiness).singleton(),
-    GenreBusiness: asClass(GenreBusiness).singleton()
+    GenreBusiness: asClass(GenreBusiness).singleton(),
+    UserBusiness: asClass(UserBusiness).singleton
 })
 .register({
     CharacterRepository: asClass(CharacterRepository).singleton(),
     MovieRepository: asClass(MovieRepository).singleton(),
-    GenreRepository: asClass(GenreRepository).singleton()
+    GenreRepository: asClass(GenreRepository).singleton(),
+    UserRepository:asClass(UserRepository).singleton()
 })
 module.exports = container;

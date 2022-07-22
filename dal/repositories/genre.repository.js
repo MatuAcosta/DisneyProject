@@ -1,4 +1,3 @@
-const { raw } = require("body-parser");
 const BaseRepository = require("./base.repository");
 
 class GenreRepository extends BaseRepository{
