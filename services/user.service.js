@@ -4,6 +4,9 @@ class UserService extends BaseService{
         super(UserBusiness);
         this.userBusiness = UserBusiness;
     }
+    async setRoles(user,roles) { 
+        return await this.userBusiness.setRoles(user,roles)
+    } 
     async checkDuplicateUsernameOrEmail(username,email){
         return await this.userBusiness.checkDuplicateUsernameOrEmail(username,email)
     }

@@ -1,10 +1,8 @@
-module.exports = function({MovieController}){
+const Router = require('express');
+//const {SignUp} = require('../middlewares');
+module.exports = function({AuthController,SignUp}){
     const router = Router();
-    router.get('/',MovieController.getAll.bind(MovieController));
-    router.get('/:id',MovieController.getOne.bind(MovieController));
-    router.post('/',upload.single('image'),MovieController.create.bind(MovieController));
-    router.put('/:id',upload.single('image'),MovieController.update.bind(MovieController));
-    router.delete('/:id',MovieController.delete.bind(MovieController));
-
+    router.post('/',[SignUp.checkDuplicateUsernameOrEmail.bind(SignUp),SignUp.checkRolesExisted.bind(SignUp)],
+    AuthController.signUp.bind(AuthController));
     return router
 } 

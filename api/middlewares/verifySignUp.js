@@ -7,7 +7,10 @@ class SignUp {
     async checkDuplicateUsernameOrEmail (req,res,next){
         let {username,email} = req.body
         let check = await this.userService.checkDuplicateUsernameOrEmail(username,email)
-        if(!check) return res.status(400).send({message:'User or email already exists'});
+        if(!check)  {
+           res.status(400).send({message:'User or email already exists'}); 
+           return;
+        }
         next();
     }
     checkRolesExisted(req,res,next){

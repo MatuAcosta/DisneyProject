@@ -1,1 +1,4 @@
 node_modules
+roles.js
+.env
+config/auth.config.js

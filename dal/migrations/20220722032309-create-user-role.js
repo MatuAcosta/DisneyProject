@@ -24,3 +24,5 @@ module.exports = {
     await queryInterface.dropTable('user_roles');
   }
 };
+/* 
+20220722032309-create-user-role.js */

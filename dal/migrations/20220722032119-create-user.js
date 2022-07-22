@@ -16,14 +16,6 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
       }
     });
   },
@@ -31,3 +23,5 @@ module.exports = {
     await queryInterface.dropTable('Users');
   }
 };
+
+/*20220722032119-create-user.js */

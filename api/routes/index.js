@@ -2,7 +2,7 @@ const {Router} = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
-module.exports = function({CharacterRoutes,MovieRoutes,GenreRoutes}){
+module.exports = function({CharacterRoutes,MovieRoutes,GenreRoutes,RegisterRoutes}){
     const router = Router();
     const apiRoute = Router();
     apiRoute
@@ -15,6 +15,8 @@ module.exports = function({CharacterRoutes,MovieRoutes,GenreRoutes}){
     apiRoute.use('/characters',CharacterRoutes)
     apiRoute.use('/movies',MovieRoutes)
     apiRoute.use('/genres',GenreRoutes)
+    apiRoute.use('/register',RegisterRoutes)
+
 
     router.use('/api',apiRoute);
     return router;

@@ -1,11 +1,15 @@
 const BaseRepository = require("./base.repository");
 class UserRepository extends BaseRepository{
-    constructor({db}){
+    constructor({db,RoleRepository}){
         super(db,'User')
         this.db = db;
     }
 
-    async checkUsernameOrEmail(username,email){
+     async setRoles(user,roles) { 
+        return await user.setRoles(roles)
+    } 
+
+    async checkDuplicateUsernameOrEmail(username,email){
         let user = await this.db['User'].findOne({
             where:{
                 username
