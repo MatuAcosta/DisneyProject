@@ -10,13 +10,16 @@ const storage = multer.diskStorage({
     }
   })
   const upload = multer({storage:storage});
-module.exports = function({MovieController}){
+module.exports = function({MovieController,Auth}){
     const router = Router();
     router.get('/',MovieController.getAll.bind(MovieController));
     router.get('/:id',MovieController.getOne.bind(MovieController));
-    router.post('/',upload.single('image'),MovieController.create.bind(MovieController));
-    router.put('/:id',upload.single('image'),MovieController.update.bind(MovieController));
-    router.delete('/:id',MovieController.delete.bind(MovieController));
+    router.post('/',[upload.single('image'),Auth.verifyToken,Auth.isAdmin.bind(Auth)],
+      MovieController.create.bind(MovieController));
+    router.put('/:id',[upload.single('image'),Auth.verifyToken,Auth.isAdmin.bind(Auth)],
+      MovieController.update.bind(MovieController));
+    router.delete('/:id',[Auth.verifyToken,Auth.isAdmin.bind(Auth)],
+    MovieController.delete.bind(MovieController));
 
     return router
 } 

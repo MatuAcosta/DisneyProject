@@ -16,8 +16,9 @@ module.exports = function({CharacterController,Auth}){
     router.get('/:id',CharacterController.getOne.bind(CharacterController));
     router.post('/',[upload.single('image'),Auth.verifyToken,Auth.isAdmin.bind(Auth)],
     CharacterController.create.bind(CharacterController));
-    router.put('/:id',upload.single('image'),CharacterController.update.bind(CharacterController));
-    router.delete('/:id',CharacterController.delete.bind(CharacterController));
+    router.put('/:id',[upload.single('image'),Auth.verifyToken,Auth.isAdmin.bind(Auth)],
+    CharacterController.update.bind(CharacterController));
+    router.delete('/:id',[Auth.verifyToken,Auth.isAdmin.bind(Auth)],CharacterController.delete.bind(CharacterController));
 
     return router
 }

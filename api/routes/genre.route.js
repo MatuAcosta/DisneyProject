@@ -10,13 +10,16 @@ const storage = multer.diskStorage({
     }
   })
 const upload = multer({storage:storage});
-module.exports = function({GenreController}){
+module.exports = function({GenreController,Auth}){
     const router = Router();
     router.get('/',GenreController.getAll.bind(GenreController));
     router.get('/:id',GenreController.getOne.bind(GenreController));
-    router.post('/',upload.single('image'),GenreController.create.bind(GenreController));
-    router.put('/:id',upload.single('image'),GenreController.update.bind(GenreController));
-    router.delete('/:id',GenreController.delete.bind(GenreController));
+    router.post('/',[upload.single('image'),Auth.verifyToken,Auth.isAdmin.bind(Auth)],
+      GenreController.create.bind(GenreController));
+    router.put('/:id',[upload.single('image'),Auth.verifyToken,Auth.isAdmin.bind(Auth)],
+      GenreController.update.bind(GenreController));
+    router.delete('/:id',[Auth.verifyToken,Auth.isAdmin.bind(Auth)],
+      GenreController.delete.bind(GenreController));
 
     return router
 }

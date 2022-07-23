@@ -27,10 +27,11 @@ class Auth {
                     return;
                 }
             }
-            return;
+            throw {msg:'Required admin permissions'}
         } catch (error) {
-            console.log(error)
-            res.status(404).send('Error')
+            console.log("ERROR")
+            res.status(404).send(error.msg)
+            return ;
         }
 
     }
