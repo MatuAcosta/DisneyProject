@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/MatuAcosta/DisneyProject#readme",
   "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
     "automapper-js": "^1.0.15",
     "awilix": "^7.0.3",
     "bcryptjs": "^2.4.3",

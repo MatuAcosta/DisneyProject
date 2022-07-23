@@ -18,16 +18,17 @@ class AuthController {
                 let roles = await this.roleService.getByName(req.body.roles);
                 if(roles){
                     rolesSet = await this.userService.setRoles(user,roles)
-                    res.status(200).send('User register')
                 } 
             } else{
                 //if role not specified is user
                 rolesSet = await this.userService.setRoles(user,[2]);
-                res.status(200).send('User register')
             }
+            let sent = await this.userService.sendEmail(user);
+            if(!sent) throw {msg:'error with mail'}
+            res.status(200).send('User register')
         } catch (error) {
-            console.log(error)
-            res.status(401).send('User already exists')
+            console.log(error);
+            res.status(401).send(error.msg ?error.msg : 'User already exists')
         }
     }
 
