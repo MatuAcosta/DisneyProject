@@ -45,8 +45,7 @@ const {RoleRepository} = require('../dal/repositories')
 
 //auth
 const {AuthController} = require("./controllers");
-const RegisterRoutes = require('./routes/register.routes')
-const LoginRoutes = require('./routes/login.routes')
+const AuthRoutes = require('./routes/auth.routes')
 
 const container = createContainer();
 
@@ -64,8 +63,7 @@ container.register({
     CharacterRoutes:asFunction(CharacterRoutes).singleton(),
     MovieRoutes: asFunction(MovieRoutes).singleton(),
     GenreRoutes: asFunction(GenreRoutes).singleton(),
-    RegisterRoutes: asFunction(RegisterRoutes).singleton(),
-    LoginRoutes:asFunction(LoginRoutes).singleton()
+    AuthRoutes: asFunction(AuthRoutes).singleton(),
 }) 
 .register({
     CharacterController: asClass(CharacterController).singleton(),

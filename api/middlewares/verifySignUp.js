@@ -5,6 +5,7 @@ class SignUp {
     }
 
     async checkDuplicateUsernameOrEmail (req,res,next){
+      console.log(req.body)
         let {username,email} = req.body
         let check = await this.userService.checkDuplicateUsernameOrEmail(username,email)
         if(!check)  {
