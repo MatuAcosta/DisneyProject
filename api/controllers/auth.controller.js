@@ -29,6 +29,10 @@ class AuthController {
         }
     }
 
+    async signIn(req,res){
+        let {body} = req;
+    }
+
 }
 
 module.exports = AuthController;
