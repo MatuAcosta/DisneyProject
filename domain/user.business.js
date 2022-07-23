@@ -5,6 +5,9 @@ class UserBusiness extends BaseService{
         super(UserRepository,User)
         this.userRepository = UserRepository
     }
+    async getUserByUsername(username){
+        return await this.userRepository.getUserByUsername(username)
+    }
     async setRoles(user,roles) { 
         return await this.userRepository.setRoles(user,roles)
     } 

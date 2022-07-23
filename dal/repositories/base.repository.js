@@ -9,7 +9,11 @@ class BaseRepository {
     }
 
     async getOne(id){
-        return await this.db[this.entity].findOne({where:{id}});
+        try {
+            return await this.db[this.entity].findOne({where:{id}});
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     async create(entity){

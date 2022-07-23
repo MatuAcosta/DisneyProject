@@ -44,6 +44,7 @@ class CharacterController {
     }
     async create(req,res){
         try {
+            console.log('create')
             const path = req.file.path.replace(/\\/g, '/');
             let character = req.body; 
             character.image = path;

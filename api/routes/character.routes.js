@@ -10,11 +10,12 @@ const storage = multer.diskStorage({
     }
   })
 const upload = multer({storage:storage});
-module.exports = function({CharacterController}){
+module.exports = function({CharacterController,Auth}){
     const router = Router();
     router.get('/',CharacterController.getAll.bind(CharacterController));
     router.get('/:id',CharacterController.getOne.bind(CharacterController));
-    router.post('/',upload.single('image'),CharacterController.create.bind(CharacterController));
+    router.post('/',[upload.single('image'),Auth.verifyToken,Auth.isAdmin.bind(Auth)],
+    CharacterController.create.bind(CharacterController));
     router.put('/:id',upload.single('image'),CharacterController.update.bind(CharacterController));
     router.delete('/:id',CharacterController.delete.bind(CharacterController));
 

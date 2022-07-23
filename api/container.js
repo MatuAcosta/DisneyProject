@@ -5,6 +5,8 @@ const Server = require('./server');
 const Routes = require('./routes')
 const db = require('../dal/models/index');
 const {SignUp} = require('./middlewares');
+const {Auth} = require('./middlewares');
+
 //character
 const {CharacterController} = require('./controllers')
 const CharacterRoutes = require('./routes/character.routes');
@@ -44,6 +46,8 @@ const {RoleRepository} = require('../dal/repositories')
 //auth
 const {AuthController} = require("./controllers");
 const RegisterRoutes = require('./routes/register.routes')
+const LoginRoutes = require('./routes/login.routes')
+
 const container = createContainer();
 
 
@@ -52,13 +56,16 @@ container.register({
     server: asClass(Server).singleton(),
     router: asFunction(Routes).singleton(),
     db:asValue(db),
-    SignUp: asClass(SignUp).singleton()
+    SignUp: asClass(SignUp).singleton(),
+    Auth: asClass(Auth).singleton()
+
 })
 .register({
     CharacterRoutes:asFunction(CharacterRoutes).singleton(),
     MovieRoutes: asFunction(MovieRoutes).singleton(),
     GenreRoutes: asFunction(GenreRoutes).singleton(),
-    RegisterRoutes: asFunction(RegisterRoutes).singleton()
+    RegisterRoutes: asFunction(RegisterRoutes).singleton(),
+    LoginRoutes:asFunction(LoginRoutes).singleton()
 }) 
 .register({
     CharacterController: asClass(CharacterController).singleton(),

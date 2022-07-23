@@ -3,8 +3,15 @@ class UserRepository extends BaseRepository{
     constructor({db,RoleRepository}){
         super(db,'User')
         this.db = db;
+        this.roleRepository = RoleRepository
     }
-
+    async getUserByUsername(username){
+        return await this.db['User'].findOne({
+            where:{
+                username
+            }
+        })
+    }
      async setRoles(user,roles) { 
         return await user.setRoles(roles)
     } 
@@ -27,16 +34,30 @@ class UserRepository extends BaseRepository{
     }
 
     async isAdmin(id){
-        let user = await super.getOne(id);
-        if(!user) return false;
-        let roles = await this.db['user_role'].findAll({
-            where:{
-                userId:user.id
+        try {
+            let user = await super.getOne(id);
+            if(!user) return false;
+            let roles = await this.db['user_role'].findAll({
+                attributes:['roleId'],
+                where:{
+                    userId:user.id
+                }
             }
+            )
+            if(roles.length === 0) return false;
+            console.log('aca')
+            return Promise.all(
+                roles.map(async r => {
+                    let id = r.dataValues.roleId;
+                    let role =  await this.roleRepository.getOne(id)
+                    return role.name
+                }
+                ) 
+            ) 
+        } catch (error) {
+            console.log(error)
         }
-        )
-        if(roles.length === 0) return false;
-        return roles.map(r => r.name); 
+       
 
     }
 
