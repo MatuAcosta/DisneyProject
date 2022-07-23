@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Movie.belongsToMany(models.Character,{through:'acts_in'})
+      Movie.belongsToMany(models.Character,{through:'acts_in',onDelete:'CASCADE',onUpdate:'CASCADE'})
       Movie.belongsTo(models.Genre);
     }
   }

@@ -1,0 +1,706 @@
+{
+	"info": {
+		"_postman_id": "4ae9c68f-ab48-4031-a4ee-10c830e38901",
+		"name": "Disney",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20866569"
+	},
+	"item": [
+		{
+			"name": "Characters",
+			"item": [
+				{
+					"name": "createCharacter",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Leo Di Caprio",
+									"type": "text"
+								},
+								{
+									"key": "birthdate",
+									"value": "1920-12-25",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "50",
+									"type": "text"
+								},
+								{
+									"key": "history",
+									"value": "Good actor",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/d:/Users/MATIAS/Desktop/imagesDisney/diCaprio.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/characters",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"characters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCharacters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/characters",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"characters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCharactersByName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/characters?name=Brad",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Brad"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCharactersByMovie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/characters?movies=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "movies",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCharactersByAge",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/characters?age=71",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "age",
+									"value": "71"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCharacter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/characters/11",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"characters",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCharacter",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Leo",
+									"type": "text"
+								},
+								{
+									"key": "age",
+									"value": "50",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "81.5",
+									"type": "text"
+								},
+								{
+									"key": "history",
+									"value": "good actor",
+									"type": "text"
+								},
+								{
+									"key": "birthdate",
+									"value": "1975-08-5",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/characters/12",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"characters",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCharacter",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/characters/11",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"characters",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movies",
+			"item": [
+				{
+					"name": "createMovie",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Titanic",
+									"type": "text"
+								},
+								{
+									"key": "creation_date",
+									"value": "1995-05-25",
+									"type": "text"
+								},
+								{
+									"key": "score",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/d:/Users/MATIAS/Desktop/imagesDisney/titanic.jpg"
+								},
+								{
+									"key": "genre",
+									"value": "Drama",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/movies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMovies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/movies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMoviesByName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/movies?name=titanic",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "titanic"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMoviesByGenre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/movies?genre=2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "genre",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMoviesOrder",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/movies?order=ASC",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "ASC"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMovie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/movies/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update movie",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Titanic",
+									"type": "text"
+								},
+								{
+									"key": "creation_date",
+									"value": "1999-12-25",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/d:/Users/MATIAS/Desktop/imagesDisney/titanic.jpg"
+								},
+								{
+									"key": "score",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "genre",
+									"value": "Drama",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/movies/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteMovie",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/movies/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Genres",
+			"item": [
+				{
+					"name": "createGenre",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Drama",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/genres",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"genres"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateGenre",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Horror",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/d:/Users/MATIAS/Desktop/imagesDisney/horror.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/genres/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"genres",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getGenres",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/genres",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"genres"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getGenre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/genres/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"genres",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteGenre",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{tokenuser}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/genres/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"genres",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SignUp",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"user\",\r\n    \"password\":\"password\",\r\n    \"email\":\"user1@gmail.com\",\r\n    \"roles\":[\"admin\",\"user\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SignIn",
+			"item": [
+				{
+					"name": "signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"user\",\r\n    \"password\":\"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlauth}}/login",
+							"host": [
+								"{{urlauth}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
