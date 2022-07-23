@@ -10,7 +10,6 @@ class Auth {
 
         jwt.verify(token,config.secret,(err,decoded) => {
             if(err)  return res.status(401).send({message:'Unauthorized'})
-            console.log('pase')
             req.userId = decoded.id;
             next();
             return ;

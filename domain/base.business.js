@@ -25,7 +25,7 @@ class BaseBusiness {
         entity = mapper(this.entityToMap,entity);
         console.log('bussiness', entity)
         const updatedEntity = await this.entityRepository.update(id,entity);
-        return mapper(this.entityToMap,updatedEntity);
+        return updatedEntity
     }
 
     async delete(id){

@@ -76,12 +76,12 @@ class MovieController {
             let movie = req.body; 
             movie.image = path;   
             let updated = await this.movieService.update(id,movie); 
-            if(updated instanceof Error) throw {message:"El score debe ser entre 1 y 5"};
-            if (!updated) throw {message:"No se pudo crear la pelicula"}  
+            if (!updated) throw {msg:"No se pudo crear la pelicula"}  
+            if(updated.msg) throw {msg:updated.msg}
             updated = mapper(MovieDto,updated)
             return res.status(200).send(updated);
         } catch (error) {
-            res.status(404).send(error.message)
+            res.status(404).send(error.msg)
         }
 
     }

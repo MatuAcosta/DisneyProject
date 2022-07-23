@@ -34,14 +34,12 @@ class CharacterService extends BaseService{
     async create(character){
         let age = this.calculateAge(new Date(character.birthdate));
         character.age = age;
-        console.log('character age service', character.age)
         return await super.create(character)
     } 
 
     async update(id,character){
         let age = this.calculateAge(new Date(character.birthdate));
         character.age = age;
-        console.log('character age service', character.age)
         return await super.update(id,character)
     }
 

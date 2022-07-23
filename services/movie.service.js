@@ -19,7 +19,7 @@ class MovieService extends BaseService {
     //this is valid for create and update.
      async create(movie) {
         if(!this.checkScore(movie.score)){
-            return new Error('Score cannot be higher than five and lower than 1');
+            return {msg:'Score cannot be higher than five and lower than 1'};
         }
         let genreId = await this.genreService.findByName(movie.genre);
         movie.genreId = genreId
@@ -27,7 +27,7 @@ class MovieService extends BaseService {
     } 
     async update(id,movie) {
         if(!this.checkScore(movie.score)){
-            return new Error('Score cannot be higher than five and lower than 1');
+            return {msg:'Score cannot be higher than five and lower than 1'};
         }
         let genreId = await this.genreService.findByName(movie.genre);
         movie.genreId = genreId

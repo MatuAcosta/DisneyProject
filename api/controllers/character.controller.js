@@ -9,7 +9,6 @@ class CharacterController {
     async getAll(req,res){
         try {
             let characters = null; 
-            console.log(req.query)
             //ccheck query params
             //we create a generic getByName because movies and characters will use this request.        
             const queryKeys = Object.keys(req.query).length;
@@ -22,8 +21,10 @@ class CharacterController {
             }
             if(characters instanceof Error) throw {msg:'Movie not found'}
             if(!characters) throw {msg:'Characteres not found'}
-            characters = characters.map(ch => mapper(CharacterDto,ch))
-            return res.send(characters);
+            queryKeys > 0 
+            ? null
+            : characters = characters.map(ch => mapper(CharacterDto,ch))
+            res.send(characters);
         } catch (error) {
             console.log(error)
             res.status(404).send(error.msg);
@@ -44,7 +45,6 @@ class CharacterController {
     }
     async create(req,res){
         try {
-            console.log('create')
             const path = req.file.path.replace(/\\/g, '/');
             let character = req.body; 
             character.image = path;
@@ -63,9 +63,11 @@ class CharacterController {
         try {
             const {id} = req.params;
             const deleted = await this.characterService.delete(id);
+            console.log(deleted)
             if(!deleted) throw new Error()
-            return res.send(deleted)
+            res.status(200).send('Character deleted')
         } catch (error) {
+            console.log(error)
             res.status(404).send('Character not found')
 
         }
@@ -78,19 +80,17 @@ class CharacterController {
             const path = req.file.path.replace(/\\/g, '/');
             let character = req.body; 
             character.image = path;
-            let updated = await this.characterService.update(id,character); 
-            if (!updated) throw new Error()
+            let updated = await this.characterService.update(id,character);
+            if (!updated) throw  {msg:'Character not found'} 
+            if(updated.msg) throw {msg: updated.msg}
             updated = mapper(CharacterDto,updated)
-            return res.status(200).send(updated);
+            res.status(200).send(updated);
         } catch (error) {
-            res.status(404).send('Character not found')
+            console.log(error)
+            res.status(404).send(error.msg)
         }
 
     }
-
-
-
-
 }
 
 module.exports = CharacterController;

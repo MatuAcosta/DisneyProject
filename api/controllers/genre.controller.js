@@ -50,7 +50,7 @@ class GenreController {
             const {id} = req.params;
             const deleted = await this.genreService.delete(id);
             if(!deleted) throw new Error()
-            return res.status(200).send(deleted)
+            res.status(200).send('Genre deleted')
         } catch (error) {
             console.log(error)
             res.status(404).send('Genre not found')
@@ -65,12 +65,13 @@ class GenreController {
             let genre = req.body; 
             genre.image = path;
             let updated = await this.genreService.update(id,genre); 
-            if (!updated) throw new Error()
+            if (!updated) throw {msg:'Genre not found'}
+            if(updated.msg) throw {msg:updated.msg}
             updated = mapper(GenreDto,updated)
             return res.status(200).send(updated);
         } catch (error) {
             console.log(error)
-            res.status(404).send('Genre not found')
+            res.status(404).send(error.msg)
         }
 
     }
